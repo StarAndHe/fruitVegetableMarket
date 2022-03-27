@@ -60,7 +60,7 @@ void AddStock()                //进货
 
         }
         StockLog[stuffName-1]->Remain += stuffNum;
-        printf("添加成功,当前%s库存为%f%s,是否继续添加(y/n)?\n",StockLog[stuffName-1]->stuffName,StockLog[stuffName-1]->ProductUnit,StockLog[stuffName-1]->Remain);
+        printf("添加成功,当前%s库存为%.2f%s,是否继续添加(y/n)?\n",StockLog[stuffName-1]->stuffName,StockLog[stuffName-1]->Remain, StockLog[stuffName - 1]->ProductUnit);
         scanf("%c", &choose);
         scanf("%c", &choose);
         while (choose != 'y' && choose != 'Y' && choose != 'N' && choose != 'n')
@@ -111,7 +111,7 @@ void ChangeStockCount()       //修改库存信息
 
         }
         StockLog[stuffName - 1]->Remain = stuffNum;
-        printf("修改成功,当前%s库存为%f%s,是否继续修改(y/n)?\n", StockLog[stuffName - 1]->stuffName, StockLog[stuffName - 1]->Remain, StockLog[stuffName - 1]->ProductUnit);
+        printf("修改成功,当前%s库存为%.2f%s,是否继续修改(y/n)?\n", StockLog[stuffName - 1]->stuffName, StockLog[stuffName - 1]->Remain, StockLog[stuffName - 1]->ProductUnit);
         scanf("%c", &choose);
         scanf("%c", &choose);
         while (choose != 'y' && choose != 'Y' && choose != 'N' && choose != 'n')
@@ -127,16 +127,18 @@ void ChangeStockCount()       //修改库存信息
 
 void LogOutStock()     //返回上一级
 {
-    StockManagementManu();
+    system("cls");
+    manu();
 }
 void CheckStock()
 {
     system("cls");
-    printf("================ 库 存 信 息 ==================\n");
-    printf("商品名称        单位         单价         现有库存\n");
+    printf("=================== 库 存 信 息 =====================\n");
+    printf("商品名称         单位          单价          现有库存\n");
+    printf("========         ====          ====          ========\n");
     for (int i = 0; i < 10; i++)
     {
-        printf("%s           %s           %f              %f\n", StockLog[i]->stuffName, StockLog[i]->ProductUnit, StockLog[i]->price, StockLog[i]->Remain);
+        printf("%8s   %10s    %10.2f      %10.2f\n", StockLog[i]->stuffName, StockLog[i]->ProductUnit, StockLog[i]->price, StockLog[i]->Remain);
     }
     printf("按y返回上一级(不区分大小写):");
     char choose;
