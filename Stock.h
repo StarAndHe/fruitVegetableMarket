@@ -1,7 +1,7 @@
 #pragma once
 #include<stdio.h>
 
-
+extern int items;
 
 
 void Load_StockData();  //从文件中加载先前的库存记录到链表中
