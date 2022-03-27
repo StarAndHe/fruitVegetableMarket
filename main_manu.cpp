@@ -45,7 +45,7 @@ void PrintTime()                 //打印当前系统时间
     time(&timenow);
     p = gmtime(&timenow);
 
-    printf("当前日期为:%d年%d月%d日\n",1900+p->tm_year,1+p->tm_mon,p->tm_mday);
+    printf("当为:%d年%d月%d日\n",1900+p->tm_year,1+p->tm_mon,p->tm_mday);
     //printf("%d\n", p->tm_sec); /*获取当前秒*/
     //printf("%d\n", p->tm_min); /*获取当前分*/
     //printf("%d\n", 8 + p->tm_hour);/*获取当前时,这里获取西方的时间,刚好相差八个小时*/
