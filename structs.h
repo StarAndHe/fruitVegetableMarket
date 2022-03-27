@@ -8,7 +8,7 @@ struct Stock                       //各类商品库存节点结构体
 	float Remain;                   //现有库存
 };
 extern Stock* StockLog[10];
-struct Trade                      //每条交易记录的结构体
+typedef struct Trade                      //每条交易记录的结构体
 {
 	int ID;                      //交易号码
 	char* Ttime;                   //交易时间
@@ -21,7 +21,7 @@ struct Trade                      //每条交易记录的结构体
 	struct Trade* next;
 }TradeList;
 
-struct Customer                    //会员结构体
+typedef struct Customer                    //会员结构体
 {
 	int Id;                   //会员编号
 	char Name[20];			// 会员姓名
