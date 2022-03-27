@@ -45,6 +45,7 @@ void newStuff()   //添加新商品
         free(StockLog[items - 1]);
         items--;
         newStuff();
+        return;
     }
     if (StockLog[items - 1]->ProductUnit[0] == '0')
     {
@@ -117,6 +118,7 @@ void AddStock()                //进货
             {
                 newStuff();
                 AddStock();
+                return;
             }
             printf("请输入1到10的数字(返回上一级请按0):\n");
             scanf("%d", &stuffName);
@@ -159,7 +161,9 @@ void ChangeStockCount()       //修改库存信息
     {
         system("cls");
         printf("请输入要修改信息的商品编号(按0返回上一级):\n");
-        printf("1.苹果   2.香蕉 3.橘子  4.菠菜 5.火龙果 6.老坛酸菜  7.葡萄  8.榴莲  9.白菜  10.萝卜\n");
+        for (int i = 0; i < items; i++)
+            printf("%d.%s ", i + 1, StockLog[i]->stuffName);
+        printf("\n");
         int stuffName;
         scanf("%d", &stuffName);
         while (stuffName < 1 || stuffName > 10)
@@ -213,13 +217,13 @@ void CheckStock()
     printf("=================== 库 存 信 息 =====================\n");
     printf("商品名称         单位          单价          现有库存\n");
     printf("========         ====          ====          ========\n");
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < items-1; i++)
     {
         printf("%8s   %10s    %10.2f      %10.2f\n", StockLog[i]->stuffName, StockLog[i]->ProductUnit, StockLog[i]->price, StockLog[i]->Remain);
     }
     printf("按y返回上一级(不区分大小写):");
     char choose;
-    getchar();
+    
     scanf("%c", &choose);
     getchar();
     while (choose != 'y' && choose!='Y')
