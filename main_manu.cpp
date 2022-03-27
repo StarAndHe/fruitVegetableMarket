@@ -5,7 +5,7 @@
 
 void manu()                             //主界面菜单
 {
-	printf("============3161 管理系统 ============\n");
+	printf("============3161 果蔬管理系统 ============\n");
 	printf("====                                    ====\n");
 	printf("====           1.库 存 管 理            ====\n\n");
 	printf("====           2.用 户 管 理            ====\n\n");
@@ -45,7 +45,7 @@ void PrintTime()                 //打印当前系统时间
     time(&timenow);
     p = gmtime(&timenow);
 
-    printf("当为:%d年%d月%d日\n",1900+p->tm_year,1+p->tm_mon,p->tm_mday);
+    printf("当前时间为:%d年%d月%d日\n",1900+p->tm_year,1+p->tm_mon,p->tm_mday);
     //printf("%d\n", p->tm_sec); /*获取当前秒*/
     //printf("%d\n", p->tm_min); /*获取当前分*/
     //printf("%d\n", 8 + p->tm_hour);/*获取当前时,这里获取西方的时间,刚好相差八个小时*/
