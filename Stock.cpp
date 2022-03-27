@@ -161,7 +161,9 @@ void ChangeStockCount()       //修改库存信息
     {
         system("cls");
         printf("请输入要修改信息的商品编号(按0返回上一级):\n");
-        printf("1.苹果   2.香蕉 3.橘子  4.菠菜 5.火龙果 6.老坛酸菜  7.葡萄  8.榴莲  9.白菜  10.萝卜\n");
+        for (int i = 0; i < items; i++)
+            printf("%d.%s ", i + 1, StockLog[i]->stuffName);
+        printf("\n");
         int stuffName;
         scanf("%d", &stuffName);
         while (stuffName < 1 || stuffName > 10)
