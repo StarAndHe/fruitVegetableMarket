@@ -1,13 +1,11 @@
 #include<stdbool.h>
-<<<<<<< HEAD
 #include <string>
                        //各类商品库存节点结构体
 
 
-typedef struct Stock                      //各类商品库存节点结构体
-=======
+
 typedef struct Stock                       //各类商品库存节点结构体
->>>>>>> a58cffbbc2a5a473813fef71bb8dbdf763e60e9d
+
 {
 	char stuffName[20];             //商品名称
 	char ProductUnit;              //商品单位 个/箱/千克
@@ -29,12 +27,9 @@ typedef struct Trade                      //每条交易记录的结构体
 }TradeList;
 
 
-<<<<<<< HEAD
 
-struct Customer                    //会员结构体
-=======
 struct Customer                    //每个顾客结构体
->>>>>>> a58cffbbc2a5a473813fef71bb8dbdf763e60e9d
+
 {
 	int ID;                   //顾客编号
 	float Left;              //卡内所剩金额
