@@ -15,7 +15,7 @@ void manu()                             //主界面菜单
 	printf("============================================\n");
     PrintTime();
     int choose = 0;
-    printf("请输入要进行的操作序号(1-4):");
+    printf("请输入要进行的操作序号:");
     do {
         scanf_s("%d", &choose);
         if (choose > 4 || choose < 1)
