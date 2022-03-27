@@ -19,7 +19,7 @@ void manu()                             //主界面菜单
     do {
         scanf_s("%d", &choose);
         if (choose > 4 || choose < 1)
-            printf("请输入正确的选项(如果要退出请按4)：");
+            printf("请输入正确的选项(如果要按4)：");
     } while (choose > 4 || choose < 1);
     switch (choose)
     {
