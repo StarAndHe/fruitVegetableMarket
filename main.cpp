@@ -7,7 +7,6 @@
 int main()
 {
 	Load_StockData();
-	Load_CustomerData();
 	Load_TradeData();
 
 	manu();
