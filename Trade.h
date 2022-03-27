@@ -2,6 +2,8 @@
 #include"structs.h"
 #include<stdio.h>
 
+
+
 extern TradeList* tradelist;
 
 void Load_TradeData();   //加载先前交易记录到链表中
