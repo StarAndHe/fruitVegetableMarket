@@ -12,3 +12,5 @@ void increaseMoney();
 void deleteCustomer();
 
 void CustomerManagement();
+
+bool find(int id);
