@@ -25,7 +25,7 @@ struct Trade                      //每条交易记录的结构体
 struct Customer                    //会员结构体
 {
 	int Id;                   //会员编号
-	std::string Name;			// 会员姓名
+	char Name[20];			// 会员姓名
 	float Money;              //卡内所剩金额
 	struct Customer* next;
 }*CustomerList;
