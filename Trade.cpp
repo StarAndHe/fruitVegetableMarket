@@ -9,27 +9,47 @@ void Load_TradeData()   //加载先前交易记录到链表中
 
 void TradeManagement()  //交易管理程序
 {
-
+	MaiChu();
 }
 
 void PrintInfo() {
-	
+	printf("商场现有商品编号及种类如下：\n");
+	for (int i = 0; i < 10; i++) {
+		printf("%d%s ",i+1, StockLog[i]->stuffName);
+	}
+	printf("\n");
+}
+
+void Deal01Error(int n) {
+	if (n != 0 && n != 1) {
+
+	}
 }
 
 void MaiChu() {
-	PrintInfo();//显示商品种类编号,输入9999结束
+	PrintInfo();//显示商品种类编号
 	int tmp;
-	float shoukuan;
-	printf("请输入欲购买商品种类编号以及数量，若结束选购请输入9999：\n");
-
+	float shoukuan=0.0f,num=0.0f;
+	printf("\n请输入欲购买商品种类编号,输入9999结束选购\n");
+	
 	while (true)
 	{
 		scanf("%d", &tmp);//输入编号选择种类
 		if (tmp == 9999) break;
 		switch (tmp)
 		{
-		case 1://然后选择按个买还是按箱买-》数量-》算出金额-》更新库存
-			
+
+		case 1://然后数量-》算出金额-》更新库存
+			printf("\n请输入欲购买几%s%s:\n",StockLog[tmp]->ProductUnit,StockLog[tmp]->stuffName);
+			scanf("%f", &num);
+			if (StockLog[tmp]->Remain - num >= 0) {//若库存足够，则卖，不够则提示
+				StockLog[tmp]->Remain -= num;
+				shoukuan += num * StockLog[tmp]->price;
+			}
+			else {
+				printf("\n库存不足，重新选择数量请输入0，重新输入种类请输入1：\n");
+
+			}
 			break;
 		case 2:
 			break;
