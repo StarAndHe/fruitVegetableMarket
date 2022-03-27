@@ -7,7 +7,7 @@ struct Stock                       //各类商品库存节点结构体
 	float price;                     //单价
 	float Remain;                   //现有库存
 };
-extern Stock* StockLog[10];
+extern Stock* StockLog[100];
 typedef struct Trade                      //每条交易记录的结构体
 {
 	int ID;                      //交易号码
