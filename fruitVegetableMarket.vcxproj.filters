@@ -52,5 +52,14 @@
     <Text Include="stock.txt">
       <Filter>资源文件</Filter>
     </Text>
+    <Text Include="Customer.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="temCustomer.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="copyCustomer.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
 </Project>

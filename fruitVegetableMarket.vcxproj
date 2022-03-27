@@ -153,7 +153,10 @@
     <ClInclude Include="Trade.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="copyCustomer.txt" />
+    <Text Include="Customer.txt" />
     <Text Include="stock.txt" />
+    <Text Include="temCustomer.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
