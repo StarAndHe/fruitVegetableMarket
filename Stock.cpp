@@ -2,7 +2,8 @@
 #include"main_manu.h"
 #include<stdlib.h>
 #include"structs.h"
-Stock* StockLog[10];
+Stock* StockLog[100];
+int items = 0;
 void Load_StockData()  //从文件中加载先前的库存记录到链表中
 {
     FILE* fp;
@@ -21,8 +22,76 @@ void Load_StockData()  //从文件中加载先前的库存记录到链表中
         fscanf(fp, "%f", &StockLog[i]->Remain);
         i++;
     }
+    items = i;
 }
+void newStuff()   //添加新商品
+{
+    items++;
+    StockLog[items - 1] = (struct Stock*)malloc(sizeof(struct Stock));
+    printf("请输入商品名(退出请按0):");
+    scanf("%s", StockLog[items - 1]->stuffName);
+    if (StockLog[items - 1]->stuffName[0] == '0')
+    {
+        free(StockLog[items - 1]);
+        items--;
+        AddStock();
+        return;
+    }
 
+    printf("请输入商品单位(修改上一项请按#,退出请按0):");
+    scanf("%s", StockLog[items - 1]->ProductUnit);
+    if (StockLog[items - 1]->ProductUnit[0] == '#')
+    {
+        free(StockLog[items - 1]);
+        items--;
+        newStuff();
+    }
+    if (StockLog[items - 1]->ProductUnit[0] == '0')
+    {
+        AddStock();
+        return;
+    }
+    printf("请输入商品单价(返回修改上一项请按#,退出请按0):");
+    int flag= scanf("%f", &StockLog[items - 1]->price);  //flag用来判断输入书否为十进制树，是返回1，否则返回0
+    getchar();
+    while (!flag)
+    {
+        if (StockLog[items - 1]->price == 16)
+        {
+            printf("请输入商品单位(退出请按0):");
+            scanf("%s", StockLog[items - 1]->ProductUnit);
+            if (StockLog[items - 1]->ProductUnit[0] == '0')
+            {
+                AddStock();
+                return;
+            }
+        }
+
+        printf("请输入商品单价(要求正数,返回修改上一项请按#,退出请按0):");
+        flag = scanf("%f", &StockLog[items - 1]->price);
+
+    }
+
+    printf("请输入进货数量(返回修改上一项请按#,退出请按0):");
+
+     flag = scanf("%f", &StockLog[items - 1]->Remain);  //flag用来判断输入书否为十进制树，是返回1，否则返回0
+        
+    while (!flag)
+    {
+        if (StockLog[items - 1]->Remain == 16)
+        {
+            printf("请输入商品单价(退出请按0):");
+            scanf("%f", &StockLog[items - 1]->price);
+            if (StockLog[items - 1]->Remain == 0)
+            {
+                AddStock();
+                return;
+            }
+        }
+        printf("请输入进货数(要求正数,返回修改上一项请按#,退出请按0):");
+        flag = scanf("%f", &StockLog[items - 1]->Remain);
+    }
+}
 void AddStock()                //进货
 {
     system("cls");
@@ -31,7 +100,10 @@ void AddStock()                //进货
     {
         system("cls");
         printf("请输入要增加的商品序号(返回上一级请按0):\n");
-        printf("1.苹果   2.香蕉 3.橘子  4.菠菜 5.火龙果 6.老坛酸菜  7.葡萄  8.榴莲  9.白菜  10.萝卜\n");
+        for (int i = 0; i < items; i++)
+            printf("%d.%s ", i+1, StockLog[i]->stuffName);
+        printf("\n");
+        printf("如果有新商品按11\n");
         int stuffName;
         scanf("%d", &stuffName);
         while (stuffName < 1 || stuffName > 10)
@@ -40,6 +112,11 @@ void AddStock()                //进货
             {
                 StockManagementManu();
                 return;
+            }
+            if (stuffName == 11)
+            {
+                newStuff();
+                AddStock();
             }
             printf("请输入1到10的数字(返回上一级请按0):\n");
             scanf("%d", &stuffName);
@@ -173,6 +250,7 @@ void StockManagementManu()
     printf("请输入要进行的操作序号（1-4）:");
     do {
         scanf_s("%d", &choose);
+        getchar();
         if (choose > 4 || choose < 1)
             printf("请输入正确的选项(如果要退出请按4)：");
     } while (choose > 4 || choose < 1);
