@@ -1,5 +1,9 @@
 #include<stdbool.h>
-typedef struct Stock                       //各类商品库存节点结构体
+#include <string>
+                       //各类商品库存节点结构体
+
+
+typedef struct Stock                      //各类商品库存节点结构体
 {
 	char stuffName[20];             //商品名称
 	char ProductUnit;              //商品单位 个/箱/千克
@@ -21,11 +25,11 @@ typedef struct Trade                      //每条交易记录的结构体
 }TradeList;
 
 
-typedef struct Customer                    //每个顾客结构体
+
+struct Customer                    //会员结构体
 {
-	int ID;                   //顾客编号
-	float Left;              //卡内所剩金额
-	bool  Members;             //是否为会员
-	int Integral;           //会员积分
+	std::string Name;
+	int Id;                   //会员编号
+	float Money;              //卡内所剩金额	
 	struct Customer* next;
-}CustomerList;
+}*CustomerList;
