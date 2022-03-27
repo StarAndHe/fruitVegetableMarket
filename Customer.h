@@ -1,5 +1,14 @@
 #pragma once
 
-void Load_CustomerData();
+
+void createCustomer();
+
+void showCustomer();
+
+void queryCustomer();
+
+void increaseMoney();
+
+void deleteCustomer();
 
 void CustomerManagement();
