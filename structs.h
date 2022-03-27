@@ -20,7 +20,6 @@ struct Trade                      //每条交易记录的结构体
 	int CustomerId;            //用户账号
 	struct Trade* next;
 }TradeList;
-extern Stock* StockLog[10];
 
 struct Customer                    //会员结构体
 {
