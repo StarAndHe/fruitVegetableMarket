@@ -49,38 +49,49 @@ void newStuff()   //添加新商品
     }
     if (StockLog[items - 1]->ProductUnit[0] == '0')
     {
+        items--;
         AddStock();
         return;
     }
-    printf("请输入商品单价(返回修改上一项请按#,退出请按0):");
+    printf("请输入商品单价(退出请按0):");
     int flag= scanf("%f", &StockLog[items - 1]->price);  //flag用来判断输入书否为十进制树，是返回1，否则返回0
     NoEmpty();
-    while (!flag)
+    
+   /* while (!flag)
     {
         if (StockLog[items - 1]->price == 16)
         {
             printf("请输入商品单位(退出请按0):");
             scanf("%s", StockLog[items - 1]->ProductUnit);
-            NoEmpty();
             if (StockLog[items - 1]->ProductUnit[0] == '0')
             {
                 AddStock();
                 return;
             }
         }
+       
 
-        printf("请输入商品单价(要求正数,返回修改上一项请按#,退出请按0):");
-        flag = scanf("%f", &StockLog[items - 1]->price);
-        NoEmpty();
+    } */
+  
+    while (StockLog[items - 1]->price <= 0 || !flag)
+        {
+        if (StockLog[items - 1]->price == 0)
+        {
+            items--;
+            AddStock();
+            return;
+        }
+            printf("请输入商品单价(要求正数,退出请按0):");
+            flag = scanf("%f", &StockLog[items - 1]->price);
+            NoEmpty();
+        }
 
-    }
-
-    printf("请输入进货数量(返回修改上一项请按#,退出请按0):");
+    printf("请输入进货数量(退出请按0):");
 
      flag = scanf("%f", &StockLog[items - 1]->Remain);  //flag用来判断输入书否为十进制树，是返回1，否则返回0
      NoEmpty();
         
-    while (!flag)
+    /*while (!flag)
     {
         if (StockLog[items - 1]->Remain == 16)
         {
@@ -93,10 +104,20 @@ void newStuff()   //添加新商品
                 return;
             }
         }
-        printf("请输入进货数(要求正数,返回修改上一项请按#,退出请按0):");
-        flag = scanf("%f", &StockLog[items - 1]->Remain);
-        NoEmpty();
-    }
+        
+    }*/
+    while (StockLog[items - 1]->Remain <= 0 || !flag)
+        {
+        if (StockLog[items - 1]->Remain == 0)
+        {
+            items--;
+            AddStock();
+            return;
+        }
+            printf("请输入进货数(要求正数,退出请按0):");
+            flag = scanf("%f", &StockLog[items - 1]->Remain);
+            NoEmpty();
+        }
 }
 void AddStock()                //进货
 {
