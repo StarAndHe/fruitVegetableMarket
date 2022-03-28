@@ -2,7 +2,6 @@
 #include"structs.h"
 #include"main_manu.h"
 #include<malloc.h>
-#include"Stock.h"
 #include <stdlib.h>
 
 
@@ -30,13 +29,11 @@ void CustomerManagement()   //用户管理程序
 	printf("============================================\n");
 	int choose = 0;
 	printf("请输入要进行的操作序号  :");
-	bool flag1 = false;
 	do {
-		flag1=scanf_s("%d", &choose);
-		NoEmpty();
+		scanf_s("%d", &choose);
 		if (choose > 6 || choose < 1)
 			printf("请输入正确的选项  :");
-	} while (!flag1 || choose > 6 || choose < 1);
+	} while (choose > 6 || choose < 1);
 	switch (choose)
 	{
 	case 1:
@@ -74,11 +71,9 @@ void createCustomer() {
 	printf("请输入会员号 ： ");
 	int t_id;
 	bool flag = false;
-	bool flag2 = false;
 	do {
 		flag = false;
-		flag2=scanf("%d", &t_id);
-		NoEmpty();
+		scanf("%d", &t_id);
 		if (t_id < 0 || t_id>999999) {
 			printf("请输入合法的会员号！！！");
 			flag = true;
@@ -87,7 +82,7 @@ void createCustomer() {
 			printf("该会员卡已存在，请重新输入！！！");
 			flag = true;
 		}
-	} while (!flag2 || flag);
+	} while (flag);
 
 	cur->Id = t_id;
 
@@ -109,16 +104,14 @@ void createCustomer() {
 	printf("请输入初始充值金额 ： ");
 	float t_money;
 	flag = false;
-	bool flag3 = false;
 	do {
 		flag = false;
-		flag3 = scanf("%f", &t_money);
-		NoEmpty();
+		scanf("%f", &t_money);
 		if (t_money < 0 || t_money>999999) {
 			printf("请输入合法的金额数！！！");
 			flag = true;
 		}
-	} while (!flag3 || flag);
+	} while (flag);
 
 	cur->Money = t_money;
 
@@ -135,16 +128,14 @@ void createCustomer() {
 
 	int choice = 0;
 	bool bj = false;
-	bool flag4 = false;
 	do {
 		bj = false;
 		printf(" 按1继续添加，按2返回用户管理界面！");
-		flag4 = scanf("%d", &choice);
-		NoEmpty();
+		scanf("%d", &choice);
 		if (choice != 1 && choice != 2) {
 			bj = true;
 		}
-	} while ( !flag4 || bj);
+	} while (bj);
 
 	if (choice == 1) {
 		createCustomer();
@@ -174,9 +165,7 @@ void showCustomer() {
 		printf("会员号 ： %d\n", cur->Id);
 		printf("会员姓名 ： %s\n", cur->Name);
 		printf("会员卡余额 ： %f\n", cur->Money);
-		printf("\n");
 		printf("**************\n");
-		printf("\n");
 
 	}
 
@@ -185,16 +174,14 @@ void showCustomer() {
 
 	int choice = 0;
 	bool bj = false;
-	bool flag4 = false;
 	do {
 		bj = false;
 		printf(" 按2返回用户管理界面！");
-		flag4 = scanf("%d", &choice);
-		NoEmpty();
+		scanf("%d", &choice);
 		if (choice != 2) {
 			bj = true;
 		}
-	} while (!flag4 || bj);
+	} while (bj);
 
 	if (choice == 2) {
 		CustomerManagement();
@@ -210,15 +197,13 @@ void deleteCustomer() {
 	printf("请输入要删除的会员卡号 ：\n");
 
 	bool flag = false;
-	bool flag1 = false;
 	do {
-		flag1 =scanf("%d", &t_id);
-		NoEmpty();
+		scanf("%d", &t_id);
 		if (t_id < 0 || t_id > 999999) {
 			printf("请输入合法的会员卡号！！！");
 			flag = true;
 		}
-	} while (!flag1 || flag);
+	} while (flag);
 
 
 	FILE* fd = fopen("Customer.txt", "r");
@@ -228,11 +213,6 @@ void deleteCustomer() {
 	}
 
 	bool is_IN = false; //是否存在该会员号
-
-	FILE* remove;
-	remove = fopen("temCustomer.txt", "w");
-	fclose(remove);
-
 	FILE* fp1 = fopen("temCustomer.txt", "r+");
 	while (!feof(fd)) {
 		fscanf(fd, "%d", &cur->Id);
@@ -253,27 +233,6 @@ void deleteCustomer() {
 
 	if (!is_IN) {
 		printf("您输入的会员号不存在！！！");
-
-		int choice = 0;
-		bool bj = false;
-		bool flag4 = false;
-		do {
-			bj = false;
-			printf(" 按1继续删除，按2返回用户管理界面！");
-			flag4 = scanf("%d", &choice);
-			NoEmpty();
-			if (choice != 1 && choice != 2) {
-				bj = true;
-			}
-		} while (!flag4 || bj);
-
-		if (choice == 1) {
-			deleteCustomer();
-		}
-		if (choice == 2) {
-			CustomerManagement();
-		}
-
 		CustomerManagement();
 	}
 
@@ -301,9 +260,9 @@ void deleteCustomer() {
 	fclose(fp1);
 
 
-	FILE* remove1;
-	remove1 = fopen("temCustomer.txt", "w");
-	fclose(remove1);
+	FILE* remove;
+	remove = fopen("temCustomer.txt", "w");
+	fclose(remove);
 
 	printf("删除成功！");
 
@@ -311,16 +270,14 @@ void deleteCustomer() {
 
 	int choice = 0;
 	bool bj = false;
-	bool flag4 = false;
 	do {
 		bj = false;
 		printf(" 按1继续删除，按2返回用户管理界面！");
-		flag4 = scanf("%d", &choice);
-		NoEmpty();
+		scanf("%d", &choice);
 		if (choice != 1 && choice != 2) {
 			bj = true;
 		}
-	} while (!flag4 || bj);
+	} while (bj);
 
 	if (choice == 1) {
 		deleteCustomer();
@@ -379,15 +336,13 @@ void queryCustomer() {
 	printf("请输入要查询的会员卡号 ：\n");
 
 	bool flag = false;
-	bool flag1 = false;
 	do {
-		flag1 = scanf("%d", &t_id);
-		NoEmpty();
+		scanf("%d", &t_id);
 		if (t_id < 0 || t_id > 999999) {
 			printf("请输入合法的会员卡号！！！");
 			flag = true;
 		}
-	} while (!flag1 || flag);
+	} while (flag);
 
 
 	FILE* fd = fopen("Customer.txt", "r");
@@ -413,26 +368,6 @@ void queryCustomer() {
 
 	if (!is_IN) {
 		printf("您输入的会员号不存在！！！");
-		fclose(fd);
-		int choice = 0;
-		bool bj = false;
-		bool flag4 = false;
-		do {
-			bj = false;
-			printf(" 按1继续查询，按2返回用户管理界面！");
-			flag4 = scanf("%d", &choice);
-			NoEmpty();
-			if (choice != 1 && choice != 2) {
-				bj = true;
-			}
-		} while (!flag4 || bj);
-
-		if (choice == 1) {
-			queryCustomer();
-		}
-		if (choice == 2) {
-			CustomerManagement();
-		}
 		CustomerManagement();
 	}
 	else {
@@ -448,16 +383,14 @@ void queryCustomer() {
 
 	int choice = 0;
 	bool bj = false;
-	bool flag4 = false;
 	do {
 		bj = false;
 		printf(" 按1继续查询，按2返回用户管理界面！");
-		flag4 = scanf("%d", &choice);
-		NoEmpty();
+		scanf("%d", &choice);
 		if (choice != 1 && choice != 2) {
 			bj = true;
 		}
-	} while (!flag4 || bj);
+	} while (bj);
 
 	if (choice == 1) {
 		queryCustomer();
@@ -475,15 +408,13 @@ void increaseMoney() {
 	printf("请输入要充值的会员卡号 ：\n");
 
 	bool flag = false;
-	bool flag1 = false;
 	do {
-		flag1 = scanf("%d", &t_id);
-		NoEmpty();
+		scanf("%d", &t_id);
 		if (t_id < 0 || t_id > 999999) {
 			printf("请输入合法的会员卡号！！！");
 			flag = true;
 		}
-	} while (! flag1 || flag);
+	} while (flag);
 
 
 	FILE* fd = fopen("Customer.txt", "r");
@@ -510,27 +441,7 @@ void increaseMoney() {
 
 	if (!is_IN) {
 		printf("您输入的会员号不存在！！！");
-
-		int choice = 0;
-		bool bj = false;
-		bool flag4 = false;
-		do {
-			bj = false;
-			printf(" 按1继续充值，按2返回用户管理界面！");
-			flag4 = scanf("%d", &choice);
-			NoEmpty();
-			if (choice != 1 && choice != 2) {
-				bj = true;
-			}
-		} while (!flag4 || bj);
-
-		if (choice == 1) {
-			increaseMoney();
-		}
-		if (choice == 2) {
-			CustomerManagement();
-		}
-
+		CustomerManagement();
 	}
 	else {
 		printf("您充值的会员信息如下 ：\n");
@@ -540,32 +451,24 @@ void increaseMoney() {
 		printf("请输入充值金额 ： ");
 		float t_money;
 		bool flag = false;
-		bool flag2 = false;
 		do {
 			flag = false;
-			flag2 = scanf("%f", &t_money);
-			NoEmpty();
+			scanf("%f", &t_money);
 			if (t_money < 0 || t_money>999999) {
 				printf("请输入合法的金额数！！！");
 				flag = true;
 			}
-		} while ( !flag2 ||flag);
+		} while (flag);
 
-		printf("充值金额 ： %f\n", t_money);
-		printf("当前账户余额为 %f\n", cur->Money);
+		printf("充值了的金额： %f", t_money);
+		printf("当前账户余额为 %f", cur->Money);
 		lastMoney = t_money + cur->Money;
-		printf("充值成功，当前余额为 %f\n", lastMoney);
+		printf(" 充值成功，当前余额为 %f\n", lastMoney);
 	}
 
 	fclose(fd);
 
 	fd = fopen("Customer.txt", "r");
-
-
-	FILE* remove;
-	remove = fopen("copyCustomer.txt", "w");
-	fclose(remove);
-
 	FILE* fp1 = fopen("copyCustomer.txt", "r+");
 	while (!feof(fd)) {
 		fscanf(fd, "%d", &cur->Id);
@@ -612,23 +515,21 @@ void increaseMoney() {
 	fclose(fp1);
 
 
-	FILE* remove2;
-	remove2 = fopen("copyCustomer.txt", "w");
-	fclose(remove2);
+	FILE* remove;
+	remove = fopen("copyCustomer.txt", "w");
+	fclose(remove);
 
 
 	int choice = 0;
 	bool bj = false;
-	bool flag4 = false;
 	do {
 		bj = false;
-		printf(" 按1继续充值，按2返回用户管理界面！\n");
-		flag4 = scanf("%d", &choice);
-		NoEmpty();
+		printf(" 按1继续充值，按2返回用户管理界面！");
+		scanf("%d", &choice);
 		if (choice != 1 && choice != 2) {
 			bj = true;
 		}
-	} while (!flag4 || bj);
+	} while (bj);
 
 	if (choice == 1) {
 		increaseMoney();
