@@ -23,6 +23,7 @@ void Load_StockData()  //从文件中加载先前的库存记录到链表中
         i++;
     }
     items = i;
+    fclose(fp);
 }
 void newStuff()   //添加新商品
 {

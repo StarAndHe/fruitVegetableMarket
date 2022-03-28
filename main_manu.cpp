@@ -92,4 +92,6 @@ void SaveStockItem()    //保存库存信息到文件中
     fprintf(fp, "%10s", StockLog[items - 1]->ProductUnit);
     fprintf(fp, "%10.2f", StockLog[items - 1]->price);
     fprintf(fp, "%10.2f", StockLog[items - 1]->Remain);
+
+    fclose(fp);
 }
