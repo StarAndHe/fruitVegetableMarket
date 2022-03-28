@@ -174,9 +174,7 @@ void showCustomer() {
 		printf("会员号 ： %d\n", cur->Id);
 		printf("会员姓名 ： %s\n", cur->Name);
 		printf("会员卡余额 ： %f\n", cur->Money);
-		printf("\n");
 		printf("**************\n");
-		printf("\n");
 
 	}
 
@@ -551,10 +549,10 @@ void increaseMoney() {
 			}
 		} while ( !flag2 ||flag);
 
-		printf("充值金额 ： %f\n", t_money);
-		printf("当前账户余额为 %f\n", cur->Money);
+		printf("充值了的金额： %f", t_money);
+		printf("当前账户余额为 %f", cur->Money);
 		lastMoney = t_money + cur->Money;
-		printf("充值成功，当前余额为 %f\n", lastMoney);
+		printf(" 充值成功，当前余额为 %f\n", lastMoney);
 	}
 
 	fclose(fd);
@@ -622,7 +620,7 @@ void increaseMoney() {
 	bool flag4 = false;
 	do {
 		bj = false;
-		printf(" 按1继续充值，按2返回用户管理界面！\n");
+		printf(" 按1继续充值，按2返回用户管理界面！");
 		flag4 = scanf("%d", &choice);
 		NoEmpty();
 		if (choice != 1 && choice != 2) {
