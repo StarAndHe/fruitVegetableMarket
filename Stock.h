@@ -18,3 +18,5 @@ void AddStock();                //进货
 void ChangeStockCount();       //修改库存信息
 
 void LogOutStock();     //返回上一级
+
+void  NoEmpty();    //排除多余字符

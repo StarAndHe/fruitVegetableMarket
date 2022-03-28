@@ -16,11 +16,21 @@ void manu()                             //主界面菜单
     PrintTime();
     int choose = 0;
     printf("请输入要进行的操作序号（1-4）:");
-    do {
-        scanf_s("%d", &choose);
-        if (choose > 4 || choose < 1)
+    int flag = scanf("%d", &choose);
+    NoEmpty();
+   while (!flag)
+    {
+        printf("请输入数字(1-4):");
+        flag = scanf("%d", &choose);
+        NoEmpty();
+    }
+    while(choose > 4 || choose < 1)
+    {
             printf("请输入正确的选项(如果要退出请按4)：");
-    } while (choose > 4 || choose < 1);
+            scanf("%d", &choose);
+            NoEmpty();
+
+    } 
     switch (choose)
     {
     case 1:
@@ -57,7 +67,7 @@ void PrintTime()                 //打印当前系统时间
 
 void LogOut()
 {
-    printf("保存数据中。。。。。。。\n");
+    printf("期待您的下次使用，保存数据中。。。。。。。\n");
     Sleep(500);
     SaveStockItem();
 }

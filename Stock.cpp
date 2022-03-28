@@ -106,8 +106,15 @@ void AddStock()                //进货
         printf("\n");
         printf("如果有新商品按11\n");
         int stuffName;
-        scanf("%d", &stuffName);
-        while (stuffName < 1 || stuffName > 10)
+        int flag = scanf("%d", &stuffName);
+        NoEmpty();
+        while (!flag)
+        {
+           printf("请输入数字:");
+           flag = scanf("%d", &stuffName);
+           NoEmpty();
+        }
+        while (stuffName < 1 || stuffName > items)
         {   
             if (stuffName == 0)
             {
@@ -120,13 +127,21 @@ void AddStock()                //进货
                 AddStock();
                 return;
             }
-            printf("请输入1到10的数字(返回上一级请按0):\n");
+            printf("请输入1到%d的数字(返回上一级请按0):\n",items);
             scanf("%d", &stuffName);
+            NoEmpty();
 
         }
         printf("请输入要采购%s的数量(返回上一级请按0):\n", StockLog[stuffName-1]->stuffName);
         float stuffNum;
-        scanf("%f",&stuffNum);
+        flag = scanf("%f",&stuffNum);
+        NoEmpty();
+        while (!flag)
+        {
+            printf("请输入数字:");
+            flag = scanf("%f", &stuffNum);
+            NoEmpty();
+        }
         while (stuffNum < 0)
         {
             if (stuffNum == 0)
@@ -136,16 +151,17 @@ void AddStock()                //进货
             }
             printf("请输入大于零的数字(返回上一级请按0):\n");
             scanf("%f", &stuffNum);
-
+            NoEmpty();
         }
         StockLog[stuffName-1]->Remain += stuffNum;
         printf("添加成功,当前%s库存为%.2f%s,是否继续添加(y/n)?\n",StockLog[stuffName-1]->stuffName,StockLog[stuffName-1]->Remain, StockLog[stuffName - 1]->ProductUnit);
         scanf("%c", &choose);
-        scanf("%c", &choose);
+        NoEmpty();
         while (choose != 'y' && choose != 'Y' && choose != 'N' && choose != 'n')
         {
             printf("请输入y/n(不区分大小写)\n");
             scanf("%c", &choose);
+            NoEmpty();
         }
 
     }
@@ -165,21 +181,35 @@ void ChangeStockCount()       //修改库存信息
             printf("%d.%s ", i + 1, StockLog[i]->stuffName);
         printf("\n");
         int stuffName;
-        scanf("%d", &stuffName);
-        while (stuffName < 1 || stuffName > 10)
+        int flag = scanf("%d", &stuffName);
+        NoEmpty();
+        while (!flag)
+        {
+            printf("请输入数字:");
+            flag = scanf("%d", &stuffName);
+            NoEmpty();
+        }
+        while (stuffName < 1 || stuffName > items)
         {
             if (stuffName == 0)
             {
                 StockManagementManu();
                 return;
             }
-            printf("请输入1到10的数字(返回上一级请按0):\n");
+            printf("请输入1到%d的数字(返回上一级请按0):\n",items);
             scanf("%d", &stuffName);
-
+            NoEmpty();
         }
         printf("请输入修改后%s的库存数量:",StockLog[stuffName-1]->stuffName);
         float stuffNum;
-        scanf("%f", &stuffNum);
+        flag = scanf("%f", &stuffNum);
+        NoEmpty();
+        while (!flag)
+        {
+            printf("请输入数字:");
+            flag = scanf("%f", &stuffNum);
+            NoEmpty();
+        }
         while (stuffNum < 0)
         {
             if (stuffNum == 0)
@@ -189,21 +219,31 @@ void ChangeStockCount()       //修改库存信息
             }
             printf("请输入大于零的数字(返回上一级请按0):\n");
             scanf("%f", &stuffNum);
+            NoEmpty();
 
         }
         StockLog[stuffName - 1]->Remain = stuffNum;
         printf("修改成功,当前%s库存为%.2f%s,是否继续修改(y/n)?\n", StockLog[stuffName - 1]->stuffName, StockLog[stuffName - 1]->Remain, StockLog[stuffName - 1]->ProductUnit);
         scanf("%c", &choose);
-        scanf("%c", &choose);
+        NoEmpty();
         while (choose != 'y' && choose != 'Y' && choose != 'N' && choose != 'n')
         {
             printf("请输入y/n(不区分大小写)\n");
             scanf("%c", &choose);
+            NoEmpty();
         }
 
 
     }
     StockManagementManu();
+}
+void  NoEmpty()
+{
+    char ch;
+    while ((ch = getchar()) != '\n')
+    {
+
+    }
 }
 
 void LogOutStock()     //返回上一级
@@ -217,20 +257,21 @@ void CheckStock()
     printf("=================== 库 存 信 息 =====================\n");
     printf("商品名称         单位          单价          现有库存\n");
     printf("========         ====          ====          ========\n");
-    for (int i = 0; i < items-1; i++)
+    for (int i = 0; i < items; i++)
     {
         printf("%8s   %10s    %10.2f      %10.2f\n", StockLog[i]->stuffName, StockLog[i]->ProductUnit, StockLog[i]->price, StockLog[i]->Remain);
     }
     printf("按y返回上一级(不区分大小写):");
     char choose;
-    
+    char ch;
     scanf("%c", &choose);
-    getchar();
+    NoEmpty();
     while (choose != 'y' && choose!='Y')
     {
         printf("返回上一级请按y:");
-        
+       
         scanf("%c", &choose);
+        NoEmpty();
     }
     StockManagementManu();
 }
