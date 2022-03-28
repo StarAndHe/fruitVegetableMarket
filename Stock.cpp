@@ -124,7 +124,7 @@ void AddStock()                //进货
 {
     system("cls");
     char choose = 'y';
-    while (choose == 'y')
+    while (choose == 'y' || choose == 'Y')
     {
         system("cls");
         printf("请输入要增加的商品序号(返回上一级请按0):\n");
@@ -322,7 +322,7 @@ void StockManagementManu()
     printf("请输入要进行的操作序号（1-4）:");
     do {
         scanf_s("%d", &choose);
-        getchar();
+        NoEmpty();
         if (choose > 4 || choose < 1)
             printf("请输入正确的选项(如果要退出请按4)：");
     } while (choose > 4 || choose < 1);
