@@ -9,4 +9,3 @@ void manu();         //主界面菜单程序
 
 void LogOut();    //退出程序并保存当前数据到文件中
 
-void SaveStockItem();    //保存库存信息到文件中

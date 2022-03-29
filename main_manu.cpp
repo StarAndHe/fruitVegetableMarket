@@ -69,29 +69,6 @@ void LogOut()
 {
     printf("期待您的下次使用，保存数据中。。。。。。。\n");
     Sleep(500);
-    SaveStockItem();
+
 }
 
-void SaveStockItem()    //保存库存信息到文件中
-{
-    FILE* fp;
-    if ((fp = fopen("stock.txt", "w")) == NULL)
-    {
-        printf("库存信息保存失败");
-        return;
-    }
-    for (int i = 0; i < items-1; i++)
-    {
-        fprintf(fp, "%10s", StockLog[i]->stuffName);
-        fprintf(fp, "%10s", StockLog[i]->ProductUnit);
-        fprintf(fp, "%10.2f", StockLog[i]->price);
-        fprintf(fp, "%10.2f", StockLog[i]->Remain);
-        fprintf(fp, "%c", '\n');
-    }
-    fprintf(fp, "%10s", StockLog[items-1]->stuffName);
-    fprintf(fp, "%10s", StockLog[items - 1]->ProductUnit);
-    fprintf(fp, "%10.2f", StockLog[items - 1]->price);
-    fprintf(fp, "%10.2f", StockLog[items - 1]->Remain);
-
-    fclose(fp);
-}

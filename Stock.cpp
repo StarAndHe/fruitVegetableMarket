@@ -119,6 +119,7 @@ void newStuff()   //添加新商品
             flag = scanf("%f", &StockLog[items - 1]->Remain);
             NoEmpty();
         }
+    SaveStockItem();
 }
 void AddStock()                //进货
 {
@@ -192,6 +193,7 @@ void AddStock()                //进货
         }
 
     }
+    SaveStockItem();
     StockManagementManu();
     
 }
@@ -262,6 +264,7 @@ void ChangeStockCount()       //修改库存信息
 
 
     }
+    SaveStockItem();
     StockManagementManu();
 }
 void  NoEmpty()
@@ -307,7 +310,29 @@ void StockManagement()  //库存管理程序
     StockManagementManu();
 }
 
+void SaveStockItem()    //保存库存信息到文件中
+{
+    FILE* fp;
+    if ((fp = fopen("stock.txt", "w")) == NULL)
+    {
+        printf("库存信息保存失败");
+        return;
+    }
+    for (int i = 0; i < items - 1; i++)
+    {
+        fprintf(fp, "%10s", StockLog[i]->stuffName);
+        fprintf(fp, "%10s", StockLog[i]->ProductUnit);
+        fprintf(fp, "%10.2f", StockLog[i]->price);
+        fprintf(fp, "%10.2f", StockLog[i]->Remain);
+        fprintf(fp, "%c", '\n');
+    }
+    fprintf(fp, "%10s", StockLog[items - 1]->stuffName);
+    fprintf(fp, "%10s", StockLog[items - 1]->ProductUnit);
+    fprintf(fp, "%10.2f", StockLog[items - 1]->price);
+    fprintf(fp, "%10.2f", StockLog[items - 1]->Remain);
 
+    fclose(fp);
+}
 void StockManagementManu()
 {
 	system("cls");
